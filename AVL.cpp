@@ -126,18 +126,19 @@ Node* Max(Node* p){
 	return p;
 }
 
+
 Node* next(Node* p){
 	if (p){
 		if (p->right)
 			return Min(p->right);
 		else {
-			Node* parent = p->parent;
-			while (parent->parent != parent && parent->right == p){
+			Node* parent = p;
+			while (parent->parent != parent && parent->left != p){
 				p = parent;
 				parent = p->parent;
 			}
-			if (parent->parent == parent) return 0;
-			else return parent;
+			if (parent->left == p) return parent;
+			else return 0;
 		}
 	}
 	return 0;
@@ -148,18 +149,17 @@ Node* previous(Node* p){
 		if (p->left)
 			return Max(p->left);
 		else{
-			Node* parent = p->parent;
-			while(parent->parent != parent && parent->left == p){
+			Node* parent = p;
+			while(parent->parent != parent && parent->right != p){
 				p = parent;
 				parent = p->parent;
 			}
-			if (parent->parent == parent) return 0;
-			else return parent;
+			if (parent->right == p) return parent;
+			else return 0;
 		}
 	}
 	return 0;
 }
-
 
 void updateRank(Node* p){
 	int r = -1;
