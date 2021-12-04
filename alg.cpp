@@ -18,7 +18,6 @@ int findIntersectionTwoThree();
 
 int main(){
 	cout<<tests(100);
-	findIntersectionAVL("testalg.txt");
 	return 0;
 }
 
